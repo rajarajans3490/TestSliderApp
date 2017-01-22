@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">SliderApp</string>
+    <string name="redbutton">Red</string>
+    <string name="bluebutton">Blue</string>
+    <string name="greenbutton">Green</string>
+    <string name="textview1">TextView1</string>
+    <string name="textview2">TextView2</string>
+    <string name="textview3">TextView3</string>
+    <string name="itemtext1">Item1</string>
+    <string name="itemtext2">Item2</string>
+    <string name="itemtext3">Item3</string>
+    <string name="itemtext4">Item4</string>
+    <string name="itemtext5">Item5</string>
+    <string name="fragment1">Fragment 1 clicked</string>
+    <string name="fragment2">Fragment 2 clicked</string>
+    <string name="fragment3">Fragment 3 clicked</string>
+    <string name="fragment4">Fragment 4 clicked</string>
+    <string name="item_text">Click on the item to see the name</string>
 </resources>
