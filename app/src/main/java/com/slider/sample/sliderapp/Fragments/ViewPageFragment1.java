@@ -12,7 +12,6 @@ import com.slider.sample.sliderapp.R;
 
 
 public class ViewPageFragment1 extends Fragment {
-    Context mContext;
 
     public static ViewPageFragment1 newInstance() {
         ViewPageFragment1 fragment = new ViewPageFragment1();

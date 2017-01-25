@@ -1,6 +1,7 @@
 package com.slider.sample.sliderapp.Activity;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,14 +16,14 @@ import android.widget.TextView;
 
 import com.slider.sample.sliderapp.Adapter.CustomFragmentPagerAdapter;
 import com.slider.sample.sliderapp.R;
+import com.slider.sample.sliderapp.databinding.ActivitySliderBinding;
 
 public class SliderActivity extends AppCompatActivity implements View.OnClickListener,ViewPager.OnPageChangeListener {
-    private RelativeLayout mRelativelayout =null;
-    private TextView mTextview4 = null;
     private Context mContext = null;
     private CustomFragmentPagerAdapter mCustomFragmentPagerAdapter = null;
     private int mPageCount;
     private ImageView[] mImages = null;
+    ActivitySliderBinding binding;
 
     public SliderActivity (){
         mContext = this;
@@ -31,32 +32,19 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_slider);
-        mRelativelayout = (RelativeLayout) findViewById(R.id.relativeid4);
-        Button mButton1 = (Button) findViewById(R.id.Button1);
-        Button mButton2 = (Button) findViewById(R.id.Button2);
-        Button mButton3 = (Button) findViewById(R.id.Button3);
-        TextView mtextview1 = (TextView) findViewById(R.id.itemtext1);
-        TextView mtextview2 = (TextView) findViewById(R.id.itemtext2);
-        TextView mtextview3 = (TextView) findViewById(R.id.itemtext3);
-        TextView mtextview4 = (TextView) findViewById(R.id.itemtext4);
-        TextView mtextview5 = (TextView) findViewById(R.id.itemtext5);
-
-        mTextview4 = (TextView) findViewById(R.id.textview4);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_slider);
         mCustomFragmentPagerAdapter = new CustomFragmentPagerAdapter(getSupportFragmentManager(), mContext);
-
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.viewpager);
-        mViewPager.setAdapter(mCustomFragmentPagerAdapter);
+        binding.viewpager.setAdapter(mCustomFragmentPagerAdapter);
         setPageIndicators();
-        mButton1.setOnClickListener((View.OnClickListener) mContext);
-        mButton2.setOnClickListener((View.OnClickListener) mContext);
-        mButton3.setOnClickListener((View.OnClickListener) mContext);
-        mtextview1.setOnClickListener((View.OnClickListener) mContext);
-        mtextview2.setOnClickListener((View.OnClickListener) mContext);
-        mtextview3.setOnClickListener((View.OnClickListener) mContext);
-        mtextview4.setOnClickListener((View.OnClickListener) mContext);
-        mtextview5.setOnClickListener((View.OnClickListener) mContext);
-        mViewPager.addOnPageChangeListener((ViewPager.OnPageChangeListener) mContext);
+        binding.Button1.setOnClickListener((View.OnClickListener) mContext);
+        binding.Button2.setOnClickListener((View.OnClickListener) mContext);
+        binding.Button3.setOnClickListener((View.OnClickListener) mContext);
+        binding.itemtext1.setOnClickListener((View.OnClickListener) mContext);
+        binding.itemtext2.setOnClickListener((View.OnClickListener) mContext);
+        binding.itemtext3.setOnClickListener((View.OnClickListener) mContext);
+        binding.itemtext4.setOnClickListener((View.OnClickListener) mContext);
+        binding.itemtext5.setOnClickListener((View.OnClickListener) mContext);
+        binding.viewpager.addOnPageChangeListener((ViewPager.OnPageChangeListener) mContext);
 
     }
 
@@ -65,28 +53,28 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Button1:
-                mRelativelayout.setBackgroundResource(R.color.red);
+                binding.relativeid4.setBackgroundResource(R.color.red);
                 break;
             case R.id.Button2:
-                mRelativelayout.setBackgroundResource(R.color.blue);
+                binding.relativeid4.setBackgroundResource(R.color.blue);
                 break;
             case R.id.Button3:
-                mRelativelayout.setBackgroundResource(R.color.green);
+                binding.relativeid4.setBackgroundResource(R.color.green);
                 break;
             case R.id.itemtext1:
-                mTextview4.setText(R.string.itemtext1);
+                binding.textview4.setText(R.string.itemtext1);
                 break;
             case R.id.itemtext2:
-                mTextview4.setText(R.string.itemtext2);
+                binding.textview4.setText(R.string.itemtext2);
                 break;
             case R.id.itemtext3:
-                mTextview4.setText(R.string.itemtext3);
+                binding.textview4.setText(R.string.itemtext3);
                 break;
             case R.id.itemtext4:
-                mTextview4.setText(R.string.itemtext4);
+                binding.textview4.setText(R.string.itemtext4);
                 break;
             case R.id.itemtext5:
-                mTextview4.setText(R.string.itemtext5);
+                binding.textview4.setText(R.string.itemtext5);
                 break;
             default:
                 break;
@@ -96,7 +84,6 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
     //To set PageIndicators to the ViewPager Fragments.
     private void setPageIndicators()
     {
-        LinearLayout mLinearLayout = (LinearLayout)findViewById(R.id.pageind);
         mPageCount = mCustomFragmentPagerAdapter.getCount();
         mImages = new ImageView[mPageCount];
         int mImagePadding = (int) (getResources().getDimension(R.dimen.image_padding)/getResources().getDisplayMetrics().density);
@@ -117,7 +104,7 @@ public class SliderActivity extends AppCompatActivity implements View.OnClickLis
             );
             params.setMargins(mMargin, mNoMargin, mMargin, mNoMargin);
             params.gravity = (Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
-            mLinearLayout.addView(mImages[i], params);
+            binding.pageind.addView(mImages[i], params);
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mImages[0].setImageDrawable(getResources().getDrawable(R.drawable.select,getApplicationContext().getTheme()));
